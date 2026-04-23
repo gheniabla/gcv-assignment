@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Student work that shouldn't leak across forks
+.claude/
