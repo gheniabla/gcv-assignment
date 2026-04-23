@@ -21,13 +21,14 @@ justifying the changes.
 You've been handed a small Python module, `library.py`, that powers part of a
 library-management system. Five units of code, five planted bugs:
 
-| # | Symbol | What it does | LLM-weak area this targets |
-|---|---|---|---|
-| 1 | `LibraryStats` | Per-branch checkout counters | Concurrent mutation / shared state |
-| 2 | `RateLimiter` | Sliding-window rate limiter | Timing-sensitive boundary conditions |
-| 3 | `parse_query` | Tiny boolean DSL over a catalog | Custom protocols / operator precedence |
-| 4 | `merge_branch_events` | Merge two sorted event streams | Cross-source merge with ordering ties |
-| 5 | `HoldQueue` | Bounded FIFO with a write-ahead log | Intermittent I/O race surfacing under load |
+| # | Symbol | What it does | LLM-weak area this targets | Tests | Failing at baseline |
+|---|---|---|---|---:|---:|
+| 1 | `LibraryStats` | Per-branch checkout counters | Concurrent mutation / shared state | 4 | 1 |
+| 2 | `RateLimiter` | Sliding-window rate limiter | Timing-sensitive boundary conditions | 5 | 2 |
+| 3 | `parse_query` | Tiny boolean DSL over a catalog | Custom protocols / operator precedence | 5 | 1 |
+| 4 | `merge_branch_events` | Merge two sorted event streams | Cross-source merge with ordering ties | 5 | 2 |
+| 5 | `HoldQueue` | Bounded FIFO with a write-ahead log | Intermittent I/O race surfacing under load | 5 | 2 |
+| | | | **Totals** | **24** | **8** |
 
 Each function/class has **exactly one** behavioural bug — not a style issue,
 not a "could be cleaner". A real bug that causes the acceptance tests to fail.
@@ -99,9 +100,9 @@ Then, for each bug in turn:
 # Work through G, C, V with Claude. At the Stage C gate, THINK.
 # Don't rubber-stamp the recommendation. Your report depends on this.
 
-# Once the GCV session is done, run the acceptance tests:
+# Once the GCV session is done, run the acceptance tests for that bug's class:
 pytest tests/test_library.py::TestLibraryStats -v
-# Expected for bug 1: 4 passed
+# Expected for bug 1: 4 passed (this class has 4 tests; the others have 5 each)
 
 # Commit and move on:
 git add library.py tests/
@@ -109,7 +110,17 @@ git commit -m "Fix bug 1 (LibraryStats) via GCV"
 ```
 
 Repeat for bugs 2, 3, 4, 5. Suggested order: **1 → 2 → 3 → 4 → 5**, but the
-five are independent — you can tackle them in any order.
+five are independent — you can tackle them in any order. Per-class test
+counts and the corresponding test-class names:
+
+| Bug | Test class | # tests |
+|---|---|---:|
+| 1 | `TestLibraryStats` | 4 |
+| 2 | `TestRateLimiter` | 5 |
+| 3 | `TestParseQuery` | 5 |
+| 4 | `TestMergeBranchEvents` | 5 |
+| 5 | `TestHoldQueue` | 5 |
+| | **Total** | **24** |
 
 ### A note on Bug 5
 
