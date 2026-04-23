@@ -1,4 +1,4 @@
-# Assignment — Debug a Library with GCV (LLM-weak edition)
+# Assignment5 - Debug a Library with GCV
 
 **Prerequisites:** Python 3.10+, `pip install -r requirements.txt`,
 Claude Code installed, the `gcv` skill installed at `~/.claude/skills/gcv/SKILL.md`.
