@@ -1,7 +1,11 @@
 # Assignment5 - Debug a Library with GCV
 
 **Prerequisites:** Python 3.10+, `pip install -r requirements.txt`,
-Claude Code installed, the `gcv` skill installed at `~/.claude/skills/gcv/SKILL.md`.
+Claude Code installed, the `gcv` skill installed at
+`~/.claude/skills/gcv/SKILL.md`. The skill's source lives in `skill/` in
+this repo — both the provided baseline (`SKILL.original.md`) and an
+improved version (`SKILL.md`), with a writeup (`IMPROVEMENTS.md`)
+justifying the changes.
 
 **Deliverables:**
 1. A fixed `library.py` where `pytest tests/ -v` ends with **24 passed, 0 failed**.
