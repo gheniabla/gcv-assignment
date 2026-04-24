@@ -181,7 +181,7 @@ felt trivial and why.
 
 ---
 
-## Grading rubric (100 points)
+## Grading rubric (100 points + 5 bonus)
 
 | Area | Points | What we're looking for |
 |---|---:|---|
@@ -190,6 +190,7 @@ felt trivial and why.
 | Report quality | 25 | Specific, concrete, shows engagement with Stage C's gate |
 | Reflection | 10 | Honest take on what GCV helped with and where it felt like overhead |
 | Code hygiene | 5 | Minimal fixes, no unrelated changes, reasonable commit messages |
+| **Bonus: GCV skill improvement** | **+5** | Submit an updated `SKILL.md` **and** a written justification in `REPORT.md` explaining what you changed and why. Must be a substantive change (not whitespace/typos) with real impact on the skill's behavior on these bugs or in general. |
 
 **Automatic 0 on the report portion** if we detect the report was
 LLM-generated in a way that doesn't match your actual session. See honor
